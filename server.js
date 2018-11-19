@@ -8,7 +8,15 @@ const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
 // const {dbConnect} = require('./db-knex');
 
+const teas = require('./db/data'); 
+
 const app = express();
+
+app.get('/api/teas', (req, res, next) => {
+  res.status(200).json(teas);
+});
+
+//app.get('/api/teas/:id')
 
 app.use(
   morgan(process.env.NODE_ENV === 'production' ? 'common' : 'dev', {
