@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 // const passport = require('passport'); 
 const {Tea} = require('../models/tea.js');
 const router = express.Router(); 
-// const teas = require('../db/data');
 
 
 
