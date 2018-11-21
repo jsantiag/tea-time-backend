@@ -22,7 +22,7 @@ const UserSchema = mongoose.Schema({
       log: String, 
       spilled: Boolean, 
       rating: Number, 
-      date: Date.now}
+      date: {type:Date, default:Date.now}}
   ] 
 });
 

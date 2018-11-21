@@ -2,13 +2,13 @@
 
 const mongoose = require('mongoose'); 
 
-const schema = new mongoose.Schema({
+const TeaSchema = mongoose.Schema({
   type: {type: String, required: true},
   tempRec:{type: [Number]},
   steepTimeRec:{type: [Number]}
 });
 
-schema.set('toJSON', {
+TeaSchema.set('toJSON', {
   virtuals: true, 
   transform: (doc, result) => {
     delete result._id; 
@@ -16,5 +16,5 @@ schema.set('toJSON', {
   }
 }); 
 
-const Tea = mongoose.model('Tea', schema); 
+const Tea = mongoose.model('Tea', TeaSchema); 
 module.exports = {Tea};
