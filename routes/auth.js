@@ -18,7 +18,7 @@ router.post('/refresh', jwtAuth, (req, res) => {
 });
 
 
-router.post('/', localAuth, function(req, res){
+router.post('/login', localAuth, function(req, res){
   const authToken = createAuthToken(req.user); 
   res.json({authToken});
 });
