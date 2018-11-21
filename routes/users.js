@@ -3,18 +3,27 @@
 const express = require('express');
 
 const {User} = require('../models/user');
-// const {Teas} = require('../models/tea');
+const {Tea} = require('../models/tea');
 
 
 const router = express.Router();
 
 // router.post('/teas', (req, res, next)=>{
-
-//   const teaId = 
-//   {tea: teaId}
-//   User.findOne({}, {_id:true})._id;
-
-// })
+//   const userId = req.user.id; 
+  
+//   User.findOne()
+ 
+    
+//   const newTea = { type, userId }; 
+//   Promise.all()
+//     .then(Tea.create(newTea)
+//       .then(result => {
+//         res.location(`${req.originalUrl}/${result.id}`).status(201).json(result);
+//       })
+//       .catch(err => {
+//         next(err);
+//       }));
+// });
 //middleware >> ensure logged in 
 //findOne 
 //update on the returned object 
