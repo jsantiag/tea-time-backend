@@ -3,7 +3,8 @@
 const mongoose = require('mongoose'); 
 
 const TeaSchema = mongoose.Schema({
-  type: {type: String, required: true},
+  teaId: {type:mongoose.Schema.Types.ObjectId},
+  teaType: {type: String, required: true},
   tempRec:{type: [Number]},
   steepTimeRec:{type: [Number]}
 });

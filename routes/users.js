@@ -3,31 +3,53 @@
 const express = require('express');
 
 const {User} = require('../models/user');
-const {Tea} = require('../models/tea');
 
 
 const router = express.Router();
 
-// router.post('/teas', (req, res, next)=>{
-//   const userId = req.user.id; 
-  
-//   User.findOne()
- 
-    
-//   const newTea = { type, userId }; 
-//   Promise.all()
-//     .then(Tea.create(newTea)
-//       .then(result => {
-//         res.location(`${req.originalUrl}/${result.id}`).status(201).json(result);
-//       })
-//       .catch(err => {
-//         next(err);
-//       }));
-// });
-//middleware >> ensure logged in 
-//findOne 
-//update on the returned object 
-//.save  >>> callback param error 
+router.post('/teas', (req, res, next)=>{
+
+  let {_id, teaType} = req.body; 
+
+  User.findOne({_id: _id})
+    .then(user => {
+      user.teas.push({teaType}); 
+      // console.log(user.teas);
+      user.save(function(err, user){
+        if (err) return console.log(err); 
+        console.log(user.teas + 'updated');
+      });
+    });
+});
+
+router.put('/teas', (req, res, next) => {
+  let {
+    _id,
+    teaId,
+    teaType,
+    log,
+    spilled,
+    rating,
+    timer
+  } = req.body; 
+
+  User.findOneAndUpdate({_id, 'teas._id': teaId},
+    {$set:
+       {
+         'teas.$.log':log,
+         'teas.$.timer':timer,
+         'teas.$.spilled':spilled,
+         'teas.$.rating':rating, 
+         'teas.$.teaType': teaType
+       }})
+    .then(user => {
+      user.save(function(err, user){
+        if (err) return console.log(err); 
+        console.log(user.teas + 'updated');
+      });
+    });
+});
+
 
 router.get('/', (req, res, next) => {
 

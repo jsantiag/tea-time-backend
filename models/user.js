@@ -17,7 +17,8 @@ const UserSchema = mongoose.Schema({
   firstName: {type: String, default: ''},
   lastName: {type: String, default: ''}, 
   teas:[
-    {tea:{type: mongoose.Schema.Types.ObjectId, ref: 'Tea'},
+    {teaId:{type: mongoose.Schema.Types.ObjectId, ref: 'Tea'},
+      teaType: String,
       timer: Number, 
       log: String, 
       spilled: Boolean, 

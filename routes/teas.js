@@ -42,25 +42,24 @@ router.get('/:id', (req, res, next) => {
     });
 });
 
-// router.post('/', (req, res, next)=>{
-//   const{ type } = req.body; 
-//   const userId = req.user.id; 
+router.post('/', (req, res, next)=>{
+  const{ teaType } = req.body; 
 
-//   if (!type) {
-//     const err = new Error('Missing tea type in req body'); 
-//     err.status = 400; 
-//     return next(err); 
-//   }
+  if (!teaType) {
+    const err = new Error('Missing tea type in req body'); 
+    err.status = 400; 
+    return next(err); 
+  }
   
-//   const newTea = { type, userId }; 
-//   Promise.all()
-//     .then(Tea.create(newTea)
-//       .then(result => {
-//         res.location(`${req.originalUrl}/${result.id}`).status(201).json(result);
-//       })
-//       .catch(err => {
-//         next(err);
-//       }));
-// });
+  const newTea = { teaType }; 
+  Promise.all()
+    .then(Tea.create(newTea)
+      .then(result => {
+        res.location(`${req.originalUrl}/${newTea.teaId}`).status(201).json(result);
+      })
+      .catch(err => {
+        next(err);
+      }));
+});
 
 module.exports=router; 
