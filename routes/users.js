@@ -18,6 +18,7 @@ router.post('/teas', (req, res, next)=>{
       user.save(function(err, user){
         if (err) return console.log(err); 
         console.log(user.teas + 'updated');
+        return res.json({lastTea:user.teas[user.teas.length-1]}); 
       });
     });
 });
@@ -50,6 +51,20 @@ router.put('/teas', (req, res, next) => {
     });
 });
 
+router.get('/:id', (req, res, next) => {
+  const { id } = req.params;
+  User.findOne({_id: id})
+    .then(result => {
+      if(result){
+        res.json(result);
+      }else{
+        next();
+      }
+    })
+    .catch(err => {
+      next(err);
+    });
+});
 
 router.get('/', (req, res, next) => {
 
