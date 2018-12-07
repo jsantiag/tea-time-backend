@@ -43,7 +43,7 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.post('/', (req, res, next)=>{
-  const{ teaType } = req.body; 
+  const{ teaType, tempRec, steepTimeRec } = req.body; 
 
   if (!teaType) {
     const err = new Error('Missing tea type in req body'); 
@@ -51,7 +51,7 @@ router.post('/', (req, res, next)=>{
     return next(err); 
   }
   
-  const newTea = { teaType }; 
+  const newTea = { teaType, tempRec, steepTimeRec }; 
   Promise.all()
     .then(Tea.create(newTea)
       .then(result => {

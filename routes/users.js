@@ -7,10 +7,10 @@ const {User} = require('../models/user');
 
 const router = express.Router();
 
+
 router.post('/teas', (req, res, next)=>{
-
   let {_id, teaType} = req.body; 
-
+  
   User.findOne({_id: _id})
     .then(user => {
       user.teas.push({teaType}); 
@@ -45,7 +45,7 @@ router.put('/teas', (req, res, next) => {
        }})
     .then(user => {
       user.save(function(err, user){
-        if (err) return console.log(err); 
+        if (err) return next(err); 
         console.log(user.teas + 'updated');
       });
     });
